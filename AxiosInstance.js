@@ -1,16 +1,19 @@
 import axios from 'axios';
+import { getToken } from "./components/auth/Storage";
 
 const axiosInstance = axios.create({
-  baseURL: "https://smartvote124.herokuapp.com",
+  baseURL: "http://localhost:3000/api",
   headers: {
     Authorization: "Bearer null",
   },
 });
 
+//https://smartvote124.herokuapp.com
 
 
-const requestHandler = (request) => {
-    //let token = JSON.parse(localStorage.getItem('accessToken'));
+
+const requestHandler = async (request) => {
+    let token = await getToken('accessToken');
     if (token) {
         request.headers['Authorization'] = `Bearer ${token}`
     }
