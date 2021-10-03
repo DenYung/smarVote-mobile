@@ -8,7 +8,7 @@ function AdminDashboard() {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Polls">
       <Tab.Screen
         name="Home"
         options={{
