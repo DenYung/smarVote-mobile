@@ -21,12 +21,12 @@ function AdminTab2() {
     }, []);
 
 
-    const renderItem = ({ item }) => <PollModel title ={item.poll} options = {item.options} />;
+    const renderItem = ({ item, index }) => <PollModel  title ={item.poll} keys={index} options = {item.options} />;
      
 
     return (
       <View style={style.container} onPress={() => console.log(poll)}>
-            <FlatList data = {poll} renderItem={renderItem} />
+            <FlatList data = {poll}  renderItem={renderItem} />
       </View>
     );
 }
