@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
+      <Stack.Navigator initialRouteName="Dashboard">
         <Stack.Screen
           name="Welcome"
           options={{ headerShown: false }}
@@ -23,7 +23,13 @@ export default function App() {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen
           name="Dashboard"
-          options={{ headerLeft: false }}
+          options={{
+            headerLeft: false,
+            headerStyle: {
+              backgroundColor: "#073494",
+            },
+            headerTintColor: "#fff"
+          }}
           component={AdminDashboard}
         />
         <Stack.Screen

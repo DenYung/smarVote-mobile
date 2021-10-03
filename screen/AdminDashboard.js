@@ -1,72 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View, TextInput } from "react-native";
-import { FloatingAction } from "react-native-floating-action";
-import Input from "../ui/Input";
-import { actions } from "../components/admin/Dashboard";
-import DashboardButton from "../components/admin/DashboardButton";
+import React from "react";
+import AdminTab1 from "./AdminTab1";
+import AdminTab2 from "./AdminTab2";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 function AdminDashboard() {
-  const [counter, setCounter] = useState(0);
-  const [inputValues, setInputValues] = useState({});
-
-  function addInputField() {
-    setCounter(counter + 1);
-  }
+  const Tab = createBottomTabNavigator();
 
   return (
-    <SafeAreaView style={style.container}>
-      <TextInput
-        multiline={true}
-        placeholder={"Write your poll..."}
-        style={style.poll}
-      />
-
-      <FloatingAction
-        actions={actions}
-        iconColor="#fff"
-        showBackground={false}
-        distanceToEdge={20}
-        position="right"
-        onPressItem={(name) => {
-          if (name === "add") {
-            addInputField();
-          }
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        options={{
+          tabBarActiveBackgroundColor: "#9199e5",
+          headerShown: false,
+          tabBarIcon: () => (
+            <Ionicons name="home" color="#3f1bdf" size="1.3rem" />
+          ),
         }}
-        shadow={true}
+        component={AdminTab1}
       />
-
-      {Array.from(Array(counter)).map((c, i) => {
-        return (
-          <Input
-            key={i}
-            onChangeText={(e) => {
-              const options = {};
-              options[counter] = e;
-              setInputValues({ ...inputValues, ...options });
-            }}
-          />
-        );
-      })}
-
-      <DashboardButton />
-    </SafeAreaView>
+      <Tab.Screen
+        name="Polls"
+        options={{
+          tabBarActiveBackgroundColor: "#9199e5",
+          headerShown: false,
+          tabBarIcon: () => (
+            <Ionicons name="analytics-outline" color="#3f1bdf" size="1.3rem" />
+          ),
+        }}
+        component={AdminTab2}
+      />
+    </Tab.Navigator>
   );
 }
 
 export default AdminDashboard;
-
-const style = StyleSheet.create({
-  container: {
-    backgroundColor: "#fafafa",
-    flex: 1,
-    alignItems: "center",
-  },
-  poll: {
-    minHeight: "20rem",
-    margin: "1rem",
-    backgroundColor: "#ccebfa",
-    width: "20rem",
-    padding: "1rem",
-    borderRadius: "1rem",
-  },
-});
