@@ -2,20 +2,25 @@ import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import PollModel from '../components/admin/PollModel';
 import axiosInstance from '../AxiosInstance';
+import Spinner from '../ui/Spinner';
 
 
 function AdminTab2() {
     const [poll, setPoll] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         axiosInstance
             .get("/admin/poll")
             .then((res) => {
                 const { data } = res;
                 setPoll(data);
+                setLoading(false);
                
             })
             .catch((err) => {
+                setLoading(false);
                 console.log(err);
             });
     }, []);
@@ -26,7 +31,11 @@ function AdminTab2() {
 
     return (
       <View style={style.container} onPress={() => console.log(poll)}>
-            <FlatList data = {poll}  renderItem={renderItem} />
+        {loading ? (
+          <Spinner />
+        ) : (
+          <FlatList data={poll} renderItem={renderItem} />
+        )}
       </View>
     );
 }

@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 
 function PollModel({ title, options }) {
-  const [data, setData] = useState([]);
+  const data = [];
 
-  useEffect(() => {
-    Object.keys(options).forEach((key) => {
-      const ob = {};
-      ob.name = key;
-      ob.value = options[key];
-      data.push(ob);
-    });
-  }, []);
+  Object.keys(options).forEach((key) => {
+    const ob = {};
+    ob.name = key;
+    ob.value = options[key];
+    data.push(ob);
+  });
 
   return (
     <View style={style.container}>
@@ -48,7 +46,7 @@ const style = StyleSheet.create({
     minHeight: "5rem",
     backgroundColor: "#fff",
     display: "flex",
-    margin: "1rem",
+    margin: "0.5rem",
     alignItems: "center",
     padding: "1rem",
     borderRadius: "0.5rem",

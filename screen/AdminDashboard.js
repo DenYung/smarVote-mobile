@@ -8,11 +8,11 @@ function AdminDashboard() {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator initialRouteName="Polls">
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
         name="Home"
         options={{
-          tabBarActiveBackgroundColor: "#9199e5",
+          tabBarActiveBackgroundColor: "#b9bff5",
           headerShown: false,
           tabBarIcon: () => (
             <Ionicons name="home" color="#3f1bdf" size="1.3rem" />
@@ -23,7 +23,7 @@ function AdminDashboard() {
       <Tab.Screen
         name="Polls"
         options={{
-          tabBarActiveBackgroundColor: "#9199e5",
+          tabBarActiveBackgroundColor: "#b9bff5",
           headerShown: false,
           tabBarIcon: () => (
             <Ionicons name="analytics-outline" color="#3f1bdf" size="1.3rem" />

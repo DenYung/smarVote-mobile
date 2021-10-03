@@ -14,6 +14,10 @@ function AdminTab1({navigation}) {
     setCounter(counter + 1);
   }
 
+  function viewPolls() {
+    navigation.navigate('Polls');
+  }
+
   return (
     <SafeAreaView style={style.container}>
       <TextInput
@@ -32,6 +36,10 @@ function AdminTab1({navigation}) {
         onPressItem={(name) => {
           if (name === "add") {
             addInputField();
+          }
+
+          if (name === "view") {
+            viewPolls();
           }
         }}
       />
@@ -58,16 +66,15 @@ export default AdminTab1;
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: "#fafafa",
+    backgroundColor: "#9b95f8",
     flex: 1,
     alignItems: "center",
   },
   poll: {
     minHeight: "20rem",
     margin: "1rem",
-    backgroundColor: "#ccebfa",
+    backgroundColor: "#ffffff",
     width: "20rem",
     padding: "1rem",
-    borderRadius: "1rem",
   },
 });

@@ -2,13 +2,13 @@ import axios from 'axios';
 import { getToken } from "./components/auth/Storage";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://smartvote124.herokuapp.com/api",
   headers: {
     Authorization: "Bearer null",
   },
 });
 
-//https://smartvote124.herokuapp.com
+//
 
 
 
