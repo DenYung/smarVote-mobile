@@ -1,35 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import axiosInstance from "../../AxiosInstance";
 import Spinner from "../../ui/Spinner";
+import { pollContext } from '../../context/Context';
 
 function DashboardButton({ data, navigation }) {
+  const context = useContext(pollContext);
   const [loading, setLoading] = useState(false);
 
   function postPoll() {
+    
     const arr = [];
+    const picArr = []
+     
 
-    const { poll, inputValues } = data;
+    const { title, participants , pics } = data;
 
-    Object.values(inputValues).map((a) => {
+    Object.values(participants).map((a) => {
       arr.push(a);
     });
 
-    if (poll === "" || arr.length === 0) {
-      return alert("poll and options fields cannot be empty");
+    Object.values(pics).map((a) => {
+      picArr.push(a);
+    })
+
+    if (title === "" || arr.length === 0) {
+      return alert("participants and name fields cannot be empty");
     }
 
     const info = {
-      poll: poll,
-      options: arr,
+      title: title,
+      participants: arr,
+      pics: picArr
     };
 
+   
 
     setLoading(true);
     axiosInstance
+      
       .post("/admin/poll", info)
       .then((res) => {
         setLoading(false);
+        context.posted = context.posted === true ? false : true;
         navigation.navigate("Polls");
       })
       .catch((err) => {
@@ -54,7 +67,7 @@ const style = StyleSheet.create({
   container: {
     height: "3.5rem",
     width: "15rem",
-    backgroundColor: "#5ebdf5",
+    backgroundColor: "#403dec",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

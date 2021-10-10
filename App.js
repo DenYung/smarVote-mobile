@@ -9,7 +9,9 @@ import StudentFeed from "./screen/StudentFeed";
 import AdminLogin from "./screen/AdminLogin";
 
 export default function App() {
+  
   const Stack = createNativeStackNavigator();
+ 
 
   return (
     <NavigationContainer>

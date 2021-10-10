@@ -1,14 +1,16 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
+const defaultImage = require("../../assets/camera.png");
 
-function PollModel({ title, options }) {
+function PollModel({ title, participants, images }) {
   const data = [];
+  console.log(images);
 
-  Object.keys(options).forEach((key) => {
+  Object.keys(participants).forEach((key) => {
     const ob = {};
     ob.name = key;
-    ob.value = options[key];
+    ob.value = participants[key];
     data.push(ob);
   });
 
@@ -19,15 +21,18 @@ function PollModel({ title, options }) {
       <View style={style.progress}>
         {data.map((a, i) => (
           <View>
-            <ProgressBar
-              key={i}
-              style={style.bar}
-              progress={a.value / 100}
-              width={250}
-              height={30}
-              size={50}
-              onPress={() => console.log("hello")}
-            />
+            <View style={style.participants}>
+              <Image source={{ uri: images[i] }} style={style.image}  defaultSource={defaultImage} />
+              <ProgressBar
+                key={i}
+                style={style.bar}
+                progress={a.value / 500}
+                width={250}
+                height={30}
+                size={50}
+              />
+            </View>
+
             <View style={style.display}>
               <Text>{a.name}</Text>
               <Text>{a.value + " votes"}</Text>
@@ -67,4 +72,18 @@ const style = StyleSheet.create({
     fontSize: "1rem",
     fontWeight: "bold",
   },
+  image: {
+    backgroundColor: "#c1baeb",
+    height: "70px",
+    width: "70px",
+    borderRadius: "100px",
+    margin: "5px",
+  },
+  participants: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
 });
