@@ -42,7 +42,7 @@ function DashboardButton({ data, navigation }) {
       .post("/admin/poll", info)
       .then((res) => {
         setLoading(false);
-        context.posted = context.posted === true ? false : true;
+        context.posted += 1;
         navigation.navigate("Polls");
       })
       .catch((err) => {

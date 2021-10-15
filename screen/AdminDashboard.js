@@ -9,7 +9,7 @@ function AdminDashboard() {
   const Tab = createBottomTabNavigator();
 
   return (
-    <pollContext.Provider value={{posted: false}}>
+    <pollContext.Provider value={{posted: 1}}>
       <Tab.Navigator initialRouteName="Home">
         <Tab.Screen
           name="Home"

@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
+      <Stack.Navigator initialRouteName="Feed">
         <Stack.Screen
           name="Welcome"
           options={{ headerShown: false }}

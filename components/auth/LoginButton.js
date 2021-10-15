@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import axios from "axios";
 import Spinner from "../../ui/Spinner";
+import { saveToken } from "../auth/Storage";
 
 function LoginButton({ navigation, data }) {
   const [loading, setLoading] = useState(false);
@@ -13,7 +14,8 @@ function LoginButton({ navigation, data }) {
       .then((response) => {
         setLoading(false);
         navigation.navigate("Feed");
-        console.log(response);
+          const token = response.data.token;
+          saveToken("accessToken", token);
       })
       .catch((error) => {
         setLoading(false);

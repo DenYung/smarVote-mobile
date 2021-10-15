@@ -5,7 +5,7 @@ const defaultImage = require("../../assets/camera.png");
 
 function PollModel({ title, participants, images }) {
   const data = [];
-  console.log(images);
+   
 
   Object.keys(participants).forEach((key) => {
     const ob = {};

@@ -29,7 +29,7 @@ function AdminTab2() {
   }, [context.posted]);
 
   const renderItem = ({ item, index }) => (
-    <PollModel title={item.title} keys={index} participants={item.participants} images = {item.pics}  />
+    <PollModel title={item.title} key={index} participants={item.participants} images = {item.pics}  />
   );
 
   return (
