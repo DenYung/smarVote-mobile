@@ -22,9 +22,9 @@ const getToken = async (key) => {
 };
 
 
-const removeToken = async (key) => {
+const removeToken = async () => {
   try {
-    await AsyncStorage.removeItem(key);
+    await AsyncStorage.clear();
   } catch (e) {
       console.log(error);
   }
