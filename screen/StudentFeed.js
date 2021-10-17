@@ -9,6 +9,7 @@ function StudentFeed() {
    const [poll, setPoll] = useState([]);
   
   useEffect(() => {
+    setLoading(true);
     axiosInstance
       .get("/student/feed")
       .then((res) => {
