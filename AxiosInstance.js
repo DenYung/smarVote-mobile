@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getToken } from "./components/auth/Storage";
 
+
 const axiosInstance = axios.create({
   baseURL: "https://smartvote124.herokuapp.com/api",
   headers: {
