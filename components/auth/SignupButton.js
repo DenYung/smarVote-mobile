@@ -6,6 +6,8 @@ import Spinner from "../../ui/Spinner";
 function SignupButton({ navigation, data }) {
   const [loading, setLoading] = useState(false);
 
+  
+
   function auth() {
     setLoading(true);
     axios

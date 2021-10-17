@@ -1,27 +1,40 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import axiosInstance from "../../AxiosInstance";
+import Spinner from "../../ui/Spinner";
+
 
 function FeedModel({ title, participants, images, id }) {
+  const [cast, setCast] = useState(false);
   const data = [];
+  
 
-  Object.keys(participants).forEach((key) => {
-    const ob = {};
-    ob.name = key;
-    ob.value = participants[key];
-    data.push(ob);
-  });
+
+   Object.keys(participants).forEach((key) => {
+     const ob = {};
+     ob.name = key;
+     ob.value = participants[key];
+     data.push(ob);
+   });
+  
 
   function castVote(a, id) {
+    setCast(true);
     const { name } = a;
     axiosInstance
       .post("/student/vote", {
         id: id,
         choice: name,
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err.response));
+      .then((res) => {
+        setCast(false);
+        console.log(res);
+      })
+      .catch((err) => {
+        setCast(false);
+        console.log(err.message);
+      });
   }
 
   return (
@@ -33,14 +46,18 @@ function FeedModel({ title, participants, images, id }) {
           <TouchableOpacity onPress={() => castVote(a, id)}>
             <View style={style.participants}>
               <Image style={style.image} source={{ uri: images[i] }} />
-              <ProgressBar
-                key={i}
-                style={style.bar}
-                progress={a.value / 100}
-                width={250}
-                height={30}
-                size={50}
-              />
+              {cast ? (
+                <Spinner />
+              ) : (
+                <ProgressBar
+                  key={i}
+                  style={style.bar}
+                  progress={a.value / 100}
+                  width={250}
+                  height={30}
+                  size={50}
+                />
+              )}
             </View>
           </TouchableOpacity>
 

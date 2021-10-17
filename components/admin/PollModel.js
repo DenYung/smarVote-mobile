@@ -26,7 +26,7 @@ function PollModel({ title, participants, images }) {
               <ProgressBar
                 key={i}
                 style={style.bar}
-                progress={a.value / 500}
+                progress={a.value / 100}
                 width={250}
                 height={30}
                 size={50}

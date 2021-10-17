@@ -5,13 +5,13 @@ import Spinner from "../../ui/Spinner";
 import { pollContext } from '../../context/Context';
 
 function DashboardButton({ data, navigation }) {
-  const context = useContext(pollContext);
   const [loading, setLoading] = useState(false);
 
   function postPoll() {
     
     const arr = [];
     const picArr = []
+     
      
 
     const { title, participants , pics } = data;
@@ -34,15 +34,11 @@ function DashboardButton({ data, navigation }) {
       pics: picArr
     };
 
-   
-
     setLoading(true);
     axiosInstance
-      
       .post("/admin/poll", info)
       .then((res) => {
         setLoading(false);
-        context.posted += 1;
         navigation.navigate("Polls");
       })
       .catch((err) => {

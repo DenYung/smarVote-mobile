@@ -27,7 +27,7 @@ function StudentFeed() {
 
   return (
     <View style={style.container}>
-      {loading ? <Spinner /> : <FlatList data={poll} renderItem={renderItem} />}
+      {loading ? <Spinner /> : <FlatList data={poll} renderItem={renderItem} key={item => item._id} />}
     </View>
   );
 }
